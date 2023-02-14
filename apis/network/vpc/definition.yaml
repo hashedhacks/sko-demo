@@ -9,7 +9,7 @@ spec:
     plural: xvpcs
   claimNames:
     kind: VPC
-    plural: VPCs
+    plural: vpcs
   versions:
     - name: v1alpha1
       served: true
