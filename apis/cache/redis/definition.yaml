@@ -7,7 +7,7 @@ spec:
   connectionSecretKeys:
     - endpoint
     - host
-  group: cache.starter.starter.org
+  group: cache.starter.org
   names:
     kind: XRedis
     plural: xredis
