@@ -2,12 +2,12 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xredis.cache.upbound.io
+  name: xredis.cache.starter.org
 spec:
   connectionSecretKeys:
     - endpoint
     - host
-  group: cache.starter.upbound.io
+  group: cache.starter.starter.org
   names:
     kind: XRedis
     plural: xredis
