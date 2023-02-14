@@ -8,8 +8,8 @@ spec:
     kind: XVPC
     plural: xvpcs
   claimNames:
-    kind: vpc
-    plural: vpcs
+    kind: VPC
+    plural: VPCs
   versions:
     - name: v1alpha1
       served: true
