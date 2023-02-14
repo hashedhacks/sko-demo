@@ -11,6 +11,9 @@ spec:
   names:
     kind: XRedis
     plural: xredis
+  claimNames:
+    kind: Redis
+    plural: redis
   versions:
   - name: v1alpha1
     served: true
