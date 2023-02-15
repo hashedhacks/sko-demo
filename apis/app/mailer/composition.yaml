@@ -19,6 +19,7 @@ spec:
               - variables:
                   SOURCE: source-email
             role: arn:aws:iam::609897127049:role/sko-mailer
+            packageType: Image
       patches:
         - fromFieldPath: "spec.parameters.source"
           toFieldPath: "spec.forProvider.environment[0].variables[SOURCE]"
