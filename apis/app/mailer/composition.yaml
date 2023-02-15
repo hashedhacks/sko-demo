@@ -6,7 +6,7 @@ spec:
   writeConnectionSecretsToNamespace: upbound-system
   compositeTypeRef:
     apiVersion: app.starter.org/v1alpha1
-    kind: Mailer
+    kind: XMailer
   resources:
     - name: function
       base:
