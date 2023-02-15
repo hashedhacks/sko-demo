@@ -1,0 +1,46 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xmailers.app.starter.org
+spec:
+  group: app.starter.org
+  names:
+    kind: XMailer
+    plural: xmailers
+  claimNames:
+    kind: Mailer
+    plural: mailers
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            description: |
+              The specification for how this Mailer should be
+              deployed.
+            properties:
+              parameters:
+                type: object
+                description: |
+                  The parameters indicating how this Mailer should
+                  be configured.
+                properties:
+                  source:
+                    type: string
+                    description: |
+                      The source email address.
+                  version:
+                    type: string
+                    description: |
+                      The mailer version.
+                required:
+                  - source
+                  - version
+            required:
+              - parameters
+
