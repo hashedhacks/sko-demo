@@ -1,0 +1,40 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xmailers.aws.app.starter.org
+spec:
+  writeConnectionSecretsToNamespace: upbound-system
+  compositeTypeRef:
+    apiVersion: app.starter.org/v1alpha1
+    kind: XMailer
+  resources:
+    - name: function
+      base:
+        apiVersion: lambda.aws.upbound.io/v1beta1
+        kind: Function
+        spec:
+          forProvider:
+            region: us-east-1
+            environment:
+              - variables:
+                  SOURCE: source-email
+            role: arn:aws:iam::609897127049:role/sko-mailer
+            packageType: Image
+      patches:
+        - fromFieldPath: "spec.parameters.source"
+          toFieldPath: "spec.forProvider.environment[0].variables[SOURCE]"
+        - fromFieldPath: "spec.parameters.version"
+          toFieldPath: "spec.forProvider.imageUri"
+          transforms:
+            - type: string
+              string:
+                fmt: 609897127049.dkr.ecr.us-east-1.amazonaws.com/sko-mailer:%s
+      connectionDetails:
+        - fromFieldPath: "status.atProvider.endpoint"
+          name: endpoint
+        - fromFieldPath: "status.atProvider.address"
+          name: host
+        - fromFieldPath: "spec.forProvider.username"
+          name: username
+        - fromConnectionSecretKey: "attribute.password"
+          name: password
